@@ -1,0 +1,40 @@
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: hmuser
+      WORDPRESS_DB_PASSWORD: hmpass
+      WORDPRESS_DB_NAME: hackmotiondb
+      WORDPRESS_DEBUG: "true"
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: hackmotiondb
+      MYSQL_USER: hmuser
+      MYSQL_PASSWORD: hmpass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: hmuser
+      PMA_PASSWORD: hmpass
+
+volumes:
+  wordpress:
+  db:
