@@ -1,6 +1,6 @@
 # Running guide
 1) `docker-compose up -d`
-2) Open `http://localhost:8080/` in your browser
+2) Open `http://localhost:8080/` in your browser (do `ctrl + shift + r` if a db connection error appears)
 3) Setup Wordpress
 4) Enable "hackmotion" theme
 5) Enable "hm_analytics" plugin
